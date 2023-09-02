@@ -1,5 +1,6 @@
 import sys
 
+
 # Function to factorize a number n into two smaller numbers
 def factorize(n):
     factors = []
@@ -8,6 +9,7 @@ def factorize(n):
             factors.append(i)
             n = n // i
     return factors
+
 
 # Check if the command-line argument is provided
 if len(sys.argv) != 2:
