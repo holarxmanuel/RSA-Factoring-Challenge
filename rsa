@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+"""
+Factorize numbers in a file into a product of two prime numbers
+"""
+import sys
+
+
+def custom_factorize():
+    """
+    A function to search a file and factorize
+    """
+    try:
+        input_file = sys.argv[1]
+        with open(input_file) as f:
+            for num_str in f:
+                num = int(num_str)
+                if num % 2 == 0:
+                    print("{}={}*{}".format(num, num // 2, 2))
+                    continue
+                factor = 3
+                while factor <= num // 2:
+                    if num % factor == 0:
+                        print("{}={}*{}".format(num, num // factor, factor))
+                        break
+                    factor += 2
+                if factor == (num // 2) + 1:
+                    print("{}={}*{}".format(num, num, 1))
+    except IndexError:
+        pass
+
+
+if __name__ == "__main__":
+    custom_factorize()
