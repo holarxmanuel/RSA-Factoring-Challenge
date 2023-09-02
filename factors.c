@@ -1,41 +1,49 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-// Function to factorize a number n into two smaller numbers
-void factorize(int n) {
-    int p, q;
-    for (p = 2; p <= n / 2; ++p) {
-        if (n % p == 0) {
-            q = n / p;
-            printf("%d = %d * %d\n", n, p, q);
-            return;
-        }
-    }
-    printf("%d is a prime number.\n", n);
+/**
+ * customFactorize - Factorize a number into two smaller numbers
+ * @targetNumber: The number to factorize
+ */
+void customFactorize(long long int targetNumber);
+
+/**
+ * main - Entry point of the program
+ * Return: 0 on success
+ */
+int main(void)
+{
+	long long int myNumber = 239809320265259;
+
+	customFactorize(myNumber);
+
+	return (0);
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Usage: %s <file>\n", argv[0]);
-        return 1;
-    }
+/**
+ * customFactorize - Factorize a number into two smaller numbers
+ * @targetNumber: The number to factorize
+ *
+ * Description: This function factors a given number into two smaller numbers.
+ * It prints the result to the standard output.
+ */
+void customFactorize(long long int targetNumber)
+{
+	long int primaryFactor = 2;
+	long int secondaryFactor;
 
-    char *input_file = argv[1];
-    FILE *file = fopen(input_file, "r");
+	while (targetNumber % primaryFactor != 0)
+	{
+		if (primaryFactor <= targetNumber)
+		{
+			primaryFactor++;
+		}
+		else
+		{
+			printf("Unable to factorize %lld\n", targetNumber);
+			return;
+		}
+	}
 
-    if (file == NULL) {
-        printf("File '%s' not found.\n", input_file);
-        return 1;
-    }
-
-    int n;
-    while (fscanf(file, "%d", &n) == 1) {
-        if (n <= 1) {
-            continue;  // Skip numbers less than or equal to 1
-        }
-        factorize(n);
-    }
-
-    fclose(file);
-    return 0;
+	secondaryFactor = targetNumber / primaryFactor;
+	printf("%lld = %ld * %ld\n", targetNumber, primaryFactor, secondaryFactor);
 }
